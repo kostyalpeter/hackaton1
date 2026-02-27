@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GroundDestroy : MonoBehaviour
 {
+    public float DestroyTime = 1f;
     void OnCollisionEnter2D(Collision2D collision)
     {
         StartCoroutine(Wait());
@@ -10,7 +11,7 @@ public class GroundDestroy : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(DestroyTime);
         Destroy(gameObject);
     }
 }
