@@ -1,5 +1,3 @@
-using System.Collections;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class SoundShot : MonoBehaviour
@@ -24,7 +22,7 @@ public class SoundShot : MonoBehaviour
         if (shootingRight == true)
         {
             gameObject.transform.position += new Vector3(-1f, 0f, 0f) * Time.deltaTime * speed;
-            gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else
         {
