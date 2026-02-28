@@ -1,5 +1,4 @@
 using System.Collections;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public PlayerMovement playerMovement;
     public bool shootingRight;
+    Damage damage;
 
     void Start()
     {
@@ -38,5 +38,11 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (other.CompareTag("enemy"))
+        {
+            other.GetComponent<Damage>().Hit();
+            Destroy(gameObject);
+        }
     }
 }
+

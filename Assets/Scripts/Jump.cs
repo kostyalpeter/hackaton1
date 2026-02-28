@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jump : MonoBehaviour
 {
-
+    public GameObject Button1;
     public void JumpSet()
     {
         StartCoroutine(Wait());
@@ -14,10 +15,12 @@ public class Jump : MonoBehaviour
         if (PlayerMovement.Jump == true)
         {
             PlayerMovement.Jump = false;
+            Button1.SetActive(false);
         }
         else
         {
-            PlayerMovement.Jump = true  ;
+            PlayerMovement.Jump = true;
+            Button1.SetActive(true);
         }
     }
 }

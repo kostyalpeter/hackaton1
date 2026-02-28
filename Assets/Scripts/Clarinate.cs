@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,6 @@ public class Clarinate : MonoBehaviour
     public Vector3 offset1 = new Vector3(1f, 1f, 0f);
     public Vector3 offset2 = new Vector3(-1f, 1f, 0f);
     public static bool CanShoot = true;
-    public static int Ammo = 5;
     public int RandomSound;
 
     void Start()
@@ -22,10 +22,11 @@ public class Clarinate : MonoBehaviour
     {
         RandomSound = Random.Range(1, 4);
 
+
         if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
         {
             float direction = Mathf.Sign(transform.localScale.x);
-            if (Ammo > 0)
+            if (Gun.Ammo > 0)
             {
                 if (playerMovement.isFacingRight == false)
                 {
@@ -36,23 +37,40 @@ public class Clarinate : MonoBehaviour
                         if (RandomSound == 1)
                         {
                             Debug.Log("1");
-                            Instantiate(Sound1, BulletPosition, Quaternion.identity);
+                            GameObject Sound1Clone = Instantiate(Sound1, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait1());
+                            IEnumerator Wait1()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound1Clone);
+                            }
                         }
                         if (RandomSound == 2)
                         {
                             Debug.Log("2");
-                            Instantiate(Sound2, BulletPosition, Quaternion.identity);
+                            GameObject Sound2Clone = Instantiate(Sound2, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait2());
+                            IEnumerator Wait2()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound2Clone);
+                            }
                         }
                         if (RandomSound == 3)
                         {
                             Debug.Log("3");
-                            Instantiate(Sound3, BulletPosition, Quaternion.identity);
+                            GameObject Sound3Clone = Instantiate(Sound3, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait3());
+                            IEnumerator Wait3()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound3Clone);
+                            }
                         }
-                        Ammo -= 1;
+                        Gun.Ammo -= 1;
                     }
-                    else { }
                 }
-                else
+                else if (playerMovement.isFacingRight == true)
                 {
                     Vector3 BulletPosition = transform.position + new Vector3(offset2.x * direction, offset2.y, 0f);
                     if (CanShoot)
@@ -60,22 +78,43 @@ public class Clarinate : MonoBehaviour
                         if (RandomSound == 1)
                         {
                             Debug.Log("1");
-                            Instantiate(Sound1, BulletPosition, Quaternion.identity);
+                            GameObject Sound1Clone = Instantiate(Sound1, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait4());
+                            IEnumerator Wait4()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound1Clone);
+                            }
+
                         }
                         if (RandomSound == 2)
                         {
                             Debug.Log("2");
-                            Instantiate(Sound2, BulletPosition, Quaternion.identity);
+                            GameObject Sound2Clone = Instantiate(Sound2, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait5());
+                            IEnumerator Wait5()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound2Clone);
+                            }
                         }
                         if (RandomSound == 3)
                         {
                             Debug.Log("3");
-                            Instantiate(Sound3, BulletPosition, Quaternion.identity);
+                            GameObject Sound3Clone = Instantiate(Sound3, BulletPosition, Quaternion.identity);
+                            StartCoroutine(Wait6());
+                            IEnumerator Wait6()
+                            {
+                                yield return new WaitForSeconds(7f);
+                                Destroy(Sound3Clone);
+                            }
                         }
-                        Ammo -= 1;
+                        Gun.Ammo -= 1;
                     }
                 }
             }
         }
+
     }
+
 }

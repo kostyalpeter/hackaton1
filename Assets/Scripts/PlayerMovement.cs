@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRight = false;
     public bool isGrounded = false;
     public static bool Jump;
+    public AudioSource Src;
+    public AudioClip Clip;
 
     private Rigidbody2D rb;
 
@@ -22,10 +24,12 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.wKey.wasPressedThisFrame && isGrounded && Jump)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Src.PlayOneShot(Clip);
         }
         else if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded && !Jump)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Src.PlayOneShot(Clip);
         }
         horizontalInput = Keyboard.current.aKey.isPressed ? -1 : Keyboard.current.dKey.isPressed ? 1 : 0;
 
